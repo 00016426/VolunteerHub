@@ -1,1 +1,35 @@
-p some content 
+include ../head.pug
+body
+    .container.mt-5
+      h1 Volunteer Events 
+      table.table.table-responsive.table-hover.table-striped.table-dark
+        thead
+          tr
+            th(scope="col") ID
+            th(scope="col") Task description 
+            th(scope="col") Event DateTime
+            th(scope="col") Venue
+            th(scope="col") Contact Phone
+            th(scope="col") Available applications
+            th(scope="col") Actions
+        tbody
+          tr
+            td 1
+            td Filling forms 
+            td 2024-03-11 17:00
+            td Example Venue
+            td +1234567890
+            td 50
+            td
+              button.btn.btn-primary.btn-sm Edit 
+              button.btn.btn-danger.btn-sm Resign 
+          tr
+            td 1
+            td Organizing the charity party 
+            td 2024-03-11 18:00
+            td Example Venue
+            td +1234567890
+            td 55
+            td
+              button.btn.btn-primary.btn-sm Edit
+              button.btn.btn-danger.btn-sm Resign
