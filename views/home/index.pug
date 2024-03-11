@@ -10,26 +10,34 @@ body
             th(scope="col") Event DateTime
             th(scope="col") Venue
             th(scope="col") Contact Phone
-            th(scope="col") Available applications
+            th(scope="col") Available Appliications 
             th(scope="col") Actions
         tbody
-          tr
-            td 1
-            td Filling forms 
-            td 2024-03-11 17:00
-            td Example Venue
-            td +1234567890
-            td 50
-            td
-              button.btn.btn-primary.btn-sm Edit 
-              button.btn.btn-danger.btn-sm Resign 
-          tr
-            td 1
-            td Organizing the charity party 
-            td 2024-03-11 18:00
-            td Example Venue
-            td +1234567890
-            td 55
-            td
-              button.btn.btn-primary.btn-sm Edit
-              button.btn.btn-danger.btn-sm Resign
+script.
+      document.addEventListener('DOMContentLoaded', function() {
+        axios.get('/api/volunteer')
+          .then(function(response) {
+            const volunteers = response.data;
+            const tableBody = document.querySelector('table tbody');
+            volunteers.forEach(t => {
+              const row = document.createElement('tr');
+              const volunteer = t.volunteer
+              row.innerHTML = `
+                <td>${t.id}</td>
+                <td>${volunteer.jobName}</td>
+                <td>${volunteer.eventDateTime}</td>
+                <td>${volunteer.venue}</td>
+                <td>${volunteer.contactPhone}</td>
+                <td>${volunteer.application}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm">Edit</button>
+                  <button class="btn btn-danger btn-sm">Resign</button>
+                </td>
+              `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
